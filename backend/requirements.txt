@@ -1,10 +1,9 @@
-fastapi
+fastapi[standard]
 uvicorn
 pydantic>=2.9.0
 pydantic-settings
 sqlalchemy
-psycopg[binary]
-alembic
+psycopg2
 python-jose[cryptography]
 passlib[bcrypt]
 python-multipart
