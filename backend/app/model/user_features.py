@@ -1,10 +1,10 @@
-import datetime
+from datetime import datetime
 
-from sqlalchemy import Column, DateTime, ForeignKey, Integer, Numeric, String
+from sqlalchemy import Column, DateTime, ForeignKey, Integer
 from sqlalchemy.orm import relationship
 from app.config.database import Base
 
-class UserFeatures(Base):
+class UserFeature(Base):
     __tablename__ = "user_features"
 
     user_id = Column(Integer, ForeignKey("users.id", ondelete="CASCADE"), primary_key=True)

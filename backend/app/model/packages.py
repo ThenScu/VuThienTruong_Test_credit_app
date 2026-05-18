@@ -1,9 +1,9 @@
-import datetime
-from matplotlib.table import Table
-from sqlalchemy import Column, DateTime, ForeignKey, Integer, Numeric, String
+from datetime import datetime
+from sqlalchemy import Table, Column, DateTime, ForeignKey, Integer, Numeric, String
 from sqlalchemy.orm import relationship
 from app.config.database import Base
 
+# Association table between packages and features
 package_features = Table(
     "package_features",
     Base.metadata,

@@ -4,9 +4,9 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import declarative_base, sessionmaker
 
 # Lấy URL từ biến môi trường (mặc định cho localhost nếu chạy không có Docker)
-SQLALCHEMY_DATABASE_URL = os.getenv(
-    "DATABASE_URL", "postgresql://postgres:postgres@db:5432/saas_credits"
-)
+
+
+SQLALCHEMY_DATABASE_URL = os.getenv("DATABASE_URL")
 
 
 # Khởi tạo Engine kết nối

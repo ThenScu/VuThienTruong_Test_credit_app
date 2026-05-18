@@ -1,8 +1,8 @@
 import uuid
+from datetime import datetime
 
 from sqlalchemy import UUID, Column, DateTime, ForeignKey, Integer, Numeric, String
 from sqlalchemy.orm import relationship
-from tomlkit import datetime
 from app.config.database import Base
 
 class Transaction(Base):
@@ -18,3 +18,8 @@ class Transaction(Base):
 
     user = relationship("User")
     package = relationship("Package")
+
+    @property
+    def package_name(self) -> str:
+        """Tự động móc tên gói thông qua mối quan hệ ngoại khóa"""
+        return self.package.name if self.package else "Gói không xác định"
