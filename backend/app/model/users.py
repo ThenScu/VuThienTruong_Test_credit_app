@@ -15,3 +15,6 @@ class User(Base):
 
     # Lấy các tính năng user đã unlock
     unlocked_features = relationship("UserFeature", back_populates="user")
+
+    # Phân loại giai cấp (starter, pro, business)
+    tier = Column(String(20), default="newbie", nullable=False)

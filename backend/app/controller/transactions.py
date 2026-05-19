@@ -26,7 +26,8 @@ def buy_package(db: Session, request: BuyPackageRequest):
     try:
         # 3. CỘNG CREDIT VÀO VÍ
         user.balance += package.credits_awarded
-
+        user.tier = package.name.lower()
+        
         # 4. UNLOCK TÍNH NĂNG (RBAC)
         # Lấy danh sách ID tính năng user đang có để tránh add trùng lặp
         current_feature_ids = {uf.feature_id for uf in user.unlocked_features}

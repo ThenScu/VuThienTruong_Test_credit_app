@@ -1,6 +1,23 @@
 version: '3.8'
 
 services:
+  # === TRẠM FRONTEND ===
+  frontend:
+    build: 
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: saas_frontend
+    ports:
+      - "3000:5173"
+    volumes:
+      - ./frontend:/app           
+      - /app/node_modules         
+    depends_on:
+      - backend
+    networks:
+      - saas_network
+
+  # === TRẠM BACKEND ===
   backend:
     build: ./backend
     ports:
@@ -12,6 +29,7 @@ services:
     networks:
       - saas_network
 
+  # === TRẠM DATABASE ===
   db:
     image: postgres:15-alpine
     container_name: saas_postgres

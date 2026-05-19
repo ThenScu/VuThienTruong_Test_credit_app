@@ -9,8 +9,12 @@ class UserProfileResponse(BaseModel):
     id: int
     username: str
     email: str
+    tier: str
     balance: float  # Tiền tệ để kiểu số thực cho chuẩn Model
     unlocked_features: List[str] = []
+
+    class Config:
+        from_attributes = True
 
 # ==========================================
 # 2. DTO Đăng ký (Regex)
