@@ -9,7 +9,10 @@ from jose import JWTError, jwt
 from sqlalchemy.orm import Session
 from app.controller import transactions as transaction_controller
 from app.config.database import engine, Base, get_db
+from app.config.database import seed_everything
 from app.config.security import get_password_hash, verify_password, create_access_token, SECRET_KEY, ALGORITHM
+
+from app.config.database import seed_everything
 
 from app.model.users import User
 from app.model.transactions import Transaction
@@ -24,6 +27,8 @@ from app.controller import packages as package_controller
 
 from app.api_guard import get_current_user, require_feature_and_credit, get_admin_user
 
+
+
 app = FastAPI(title="SaaS Credit Management API", version="1.0")
 
 app.add_middleware(
@@ -33,6 +38,10 @@ app.add_middleware(
     allow_methods=["*"], 
     allow_headers=["*"], 
 )
+
+@app.on_event("startup")
+def on_startup():
+    seed_everything()
 
 def wait_for_db(engine, retries: int = 10, delay_seconds: int = 1):
     """Wait for the database to become available before running migrations or
