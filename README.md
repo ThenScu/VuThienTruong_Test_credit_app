@@ -35,4 +35,4 @@ Sau khi Docker khởi chạy thành công, truy cập trình duyệt tại:
 
 * Admin/User: Sử dụng tài khoản admin / Admin123 để trải nghiệm hệ thống.
 
-**Tác giả: Vũ Thiên Trường - Kỹ thuật Phần mềm **
+** Tác giả: Vũ Thiên Trường - Kỹ thuật Phần mềm **
