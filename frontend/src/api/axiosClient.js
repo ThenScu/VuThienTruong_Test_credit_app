@@ -7,7 +7,6 @@ const axiosClient = axios.create({
     },
 });
 
-
 axiosClient.interceptors.request.use((config) => {
     const token = localStorage.getItem('access_token');
     if (token) {
@@ -24,8 +23,11 @@ axiosClient.interceptors.response.use(
     (error) => {
         if (error.response && error.response.status === 401) {
             localStorage.removeItem('access_token');
-            // force navigation to login (works from anywhere)
-            window.location.href = '/login';
+            
+            // 🛡️ CHỐT CHẶN Ở ĐÂY: Chỉ ép F5/Redirect nếu KHÔNG PHẢI đang ở trang login
+            if (window.location.pathname !== '/login') {
+                window.location.href = '/login';
+            }
         }
         return Promise.reject(error);
     }

@@ -35,8 +35,19 @@ const Profile = () => {
                 <p><strong>Tier:</strong> {user.tier}</p>
                 <h4>Features unlocked</h4>
                 <ul>
-                    {(user.unlocked_features || []).map(uf => (
-                        <li key={`${uf.feature_id}`}>{uf.feature?.name || 'Feature ' + uf.feature_id}</li>
+                    {(user.unlocked_features || []).map((uf, index) => (
+                        <li key={index} style={{ marginBottom: '8px' }}>
+                            ✅ {
+                                // Bao vây mọi ngóc ngách, Backend giấu ở đâu cũng lôi ra bằng được
+                                uf.feature?.name || 
+                                uf.feature?.code || 
+                                uf.feature_code || 
+                                uf.name || 
+                                uf.code || 
+                                
+                                JSON.stringify(uf)
+                            }
+                        </li>
                     ))}
                 </ul>
             </div>

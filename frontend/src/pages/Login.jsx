@@ -32,9 +32,22 @@ const Login = () => {
             }
 
         } catch (err) {
-            console.error("Lỗi đăng nhập:", err, err.response && err.response.data);
-            const message = err?.response?.data?.detail || err?.message || 'Lỗi đăng nhập';
-            setError(message);
+            console.error("Lỗi đăng nhập API:", err.response?.data);
+            
+            const detailData = err?.response?.data?.detail;
+            
+            // Xử lý triệt để đống Object của FastAPI giống trang Đăng ký
+            if (Array.isArray(detailData)) {
+                setError(`Lỗi nhập liệu: ${detailData[0].msg}`);
+            } 
+            // Xử lý lỗi text bình thường (VD: "Sai tài khoản hoặc mật khẩu")
+            else if (typeof detailData === 'string') {
+                setError(detailData);
+            } 
+            // Chặn đứng các lỗi không xác định
+            else {
+                setError('Sai tài khoản hoặc mật khẩu, vui lòng thử lại!');
+            }
         }
     };
 
